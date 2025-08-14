@@ -29,7 +29,7 @@ const display = {
       updateVotesOfItmes(){
         for(let i = 1 ; i<= numberOfProductInTheMoment ; i++){
           if (votes.sumOfVotes(i)){
-          document.getElementById(`item-rating-container-${i}`).innerHTML = `<img src="images/rating-${votes.getGeneralRating(i)*10}.png" class="item-rating-image" id="item-1-image">
+          document.getElementById(`item-rating-container-${i}`).innerHTML = `<img src="rating-${votes.getGeneralRating(i)*10}.png" class="item-rating-image" id="item-1-image">
           <div class="items-number-of-votes"  id="item-1-number-of-votes">${votes.sumOfVotes(i)}</div>`}
 
         }
@@ -38,25 +38,25 @@ const display = {
         if(itm && document.getElementById('display-number-of-buyed-itmes') ){document.getElementById('display-number-of-buyed-itmes').innerText = itm}
       },
       updateHeadIcons(){
-      if(smallWidth) {document.getElementById('first-section').innerHTML = `<img src="images/small-logo.png" id="small-logo" onclick="clicks.homePage()">`;
-        document.getElementById('right-section').innerHTML='<img src="images/menu.png" id="settings" onclick="clicks.openMenu()">';
+      if(smallWidth) {document.getElementById('first-section').innerHTML = `<img src="small-logo.png" id="small-logo" onclick="clicks.homePage()">`;
+        document.getElementById('right-section').innerHTML='<img src="menu.png" id="settings" onclick="clicks.openMenu()">';
       }
       else{
-        document.getElementById('first-section').innerHTML = `<img src="images/logo.png" id="logo" onclick="clicks.homePage()">`;
+        document.getElementById('first-section').innerHTML = `<img src="logo.png" id="logo" onclick="clicks.homePage()">`;
         document.getElementById('right-section').innerHTML=`<button id="option1" onclick="clicks.returnsPage()">Returns<p id="tt">& Orders</p></button>
-      <div class="container" onclick="clicks.checkOutsPage()"><img src="images/cart-icon.png" id="cart-icon"><div id="display-number-of-buyed-itmes">${itemsBuyed}</div><span id="cart-text">Cart</span></div>`;
+      <div class="container" onclick="clicks.checkOutsPage()"><img src="cart-icon.png" id="cart-icon"><div id="display-number-of-buyed-itmes">${itemsBuyed}</div><span id="cart-text">Cart</span></div>`;
         smallWidth = false;
       }
       window.addEventListener('resize',()=>{
         if(window.innerWidth < 574 && !smallWidth) {
-          document.getElementById('first-section').innerHTML = `<img src="images/small-logo.png" id="small-logo" onclick="clicks.homePage()">`;
-          document.getElementById('right-section').innerHTML='<img src="images/menu.png" id="settings" onclick="clicks.openMenu()">';
+          document.getElementById('first-section').innerHTML = `<img src="small-logo.png" id="small-logo" onclick="clicks.homePage()">`;
+          document.getElementById('right-section').innerHTML='<img src="menu.png" id="settings" onclick="clicks.openMenu()">';
           smallWidth=true ;
         }
         else if (window.innerWidth >= 575 && smallWidth){
-          document.getElementById('first-section').innerHTML = `<img src="images/logo.png" id="logo" onclick="clicks.homePage()">`;
+          document.getElementById('first-section').innerHTML = `<img src="logo.png" id="logo" onclick="clicks.homePage()">`;
           document.getElementById('right-section').innerHTML=`<button id="option1" onclick="clicks.returnsPage()">Returns<p id="tt">& Orders</p></button>
-      <div class="container" onclick="clicks.checkOutsPage()"><img src="images/cart-icon.png" id="cart-icon"><div id="display-number-of-buyed-itmes">${itemsBuyed}</div><span id="cart-text">Cart</span></div>`;
+      <div class="container" onclick="clicks.checkOutsPage()"><img src="cart-icon.png" id="cart-icon"><div id="display-number-of-buyed-itmes">${itemsBuyed}</div><span id="cart-text">Cart</span></div>`;
         smallWidth = false;
         }
       })},
@@ -92,7 +92,7 @@ const clicks = {
     timeOutMsgBuyId[element]=[];
     clearTimeout(timeOutMsgBuyId[element][item]);
     document.getElementById(`buy-again-item-${item}-element-${element}`).innerHTML = '✓ Added' ;
-    timeOutMsgBuyId[element][item]= setTimeout(()=>{document.getElementById(`buy-again-item-${item}-element-${element}`).innerHTML='<img src="images/buy-again.png" class="buy-again-img"><span id="buy">Buy it again</span>'},1500);
+    timeOutMsgBuyId[element][item]= setTimeout(()=>{document.getElementById(`buy-again-item-${item}-element-${element}`).innerHTML='<img src="buy-again.png" class="buy-again-img"><span id="buy">Buy it again</span>'},1500);
     itemsBuyed++ ;
     allOrderedProductsQuantity[item-1]++;
     localStorage.setItem('buyedItemQuantity',JSON.stringify(allOrderedProductsQuantity));
@@ -171,7 +171,7 @@ const clicks = {
             <option>10</option>
           </select>
           </div>
-          <div class="add-to-cart-message noMsg" id="added-message-item-${numberOfProductInTheMoment}"><img src="images/checkmark.png" class="checkmark hide" id="checkmark-image-${numberOfProductInTheMoment}">Added</div>
+          <div class="add-to-cart-message noMsg" id="added-message-item-${numberOfProductInTheMoment}"><img src="checkmark.png" class="checkmark hide" id="checkmark-image-${numberOfProductInTheMoment}">Added</div>
           <div class="add-to-cart-button-container">
             <button class="add-to-cart-button" id="add-to-cart-button-item-${numberOfProductInTheMoment}" onclick="clicks.addNewItemsToCart(${numberOfProductInTheMoment})">Add to Cart</button>
           </div>
@@ -201,7 +201,7 @@ const clicks = {
                 <div id="order-${item}-title-delivery-date" class="order-title-delivery-date">Delivery date: Friday, August 15</div>
                 <div class="order-display">
                   <div class="right-section">
-                    <div class="order-image-container"><img src="images/products/product${item}.jpg" class="order-image"></div>
+                    <div class="order-image-container"><img src="product${item}.jpg" class="order-image"></div>
                     <div class="order-text-price-quantity">
                         <div class="order-text">${allProductsInfo.text[item-1]}</div>
                         <div class="order-price">$${allProductsInfo.price[item-1]}</div>
@@ -257,12 +257,12 @@ buyOrders(){
 
                   <div class="buyed-order">
                     <div class="image-text-container">
-                    <div class="buyed-order-image-container"><img src="images/products/product${item}.jpg" class="buyed-order-image"></div>
+                    <div class="buyed-order-image-container"><img src="product${item}.jpg" class="buyed-order-image"></div>
                     <div class="buyed-order-text">
                       <div class="limit-text-2-lines">${allProductsInfo.text[item-1]}</div>
                       <div class="normal-text" id="item-${item}-delivery-element-${purchasesMade}">Arriving on: ${array2[array.indexOf(shippingPrice[item-1])]}</div>
                       <div class="normal-text"  id="item-${item}-quantity-element-${purchasesMade}">Quantity: ${allOrderedProductsQuantity[item-1]}</div>
-                      <button class="buy-again" id="buy-again-item-${item}-element-${purchasesMade}" onclick="clicks.buyAgain(${item},${purchasesMade})"><img src="images/buy-again.png" class="buy-again-img"><span id="buy">Buy it again</span></button>
+                      <button class="buy-again" id="buy-again-item-${item}-element-${purchasesMade}" onclick="clicks.buyAgain(${item},${purchasesMade})"><img src="buy-again.png" class="buy-again-img"><span id="buy">Buy it again</span></button>
                       <button class="Track-Package small-size" onclick="clicks.trackingPage(${item},'${allProductsInfo.text[item-1]}','${`Arriving on: ${array2[array.indexOf(shippingPrice[item-1])]}`}','${`Quantity: ${allOrderedProductsQuantity[item-1]}`}')">Track Package</button>
                     </div>
                     </div>
@@ -324,7 +324,7 @@ buyOrders(){
 function createImgArray(nb){
   const arr = []
   for (let i = 1 ; i<=nb ; i++){
-    arr.push(`images/products/product${i}.jpg`)
+    arr.push(`product${i}.jpg`)
   }
   return arr
 }
@@ -360,4 +360,5 @@ let timeOutMsgBuyId = [0];
 let allProductsInfo = {text : ['Black and Gray Athletic Cotton Socks - 6 Pairs','Intermediate Size Basketball','Adults Plain Cotton T-Shirt - 2 Pack','2 Slot Toaster - Black','6 Piece White Dinner Plate Set','6-Piece Nonstick, Carbon Steel Oven Bakeware Baking Set','Plain Hooded Fleece Sweatshirt','Luxury Towel Set - Graphite Gray','Liquid Laundry Detergent, 110 Loads, 82.5 Fl Oz','Waterproof Knit Athletic Sneakers - Gray','Women\'s Stretch Popover Hoodie','Round Black Sunglasses',"Women's Two Strap Buckle Sandals - Tan","Blackout Curtains Set 4-Pack - Beige","Men's Slim-Fit Summer Shorts","Electric Glass and Steel Hot Tea Water Kettle - 1.7-Liter","Ultra Soft Tissue 2-Ply - 18 Box","Straw Lifeguard Sun Hat","Sterling Silver Sky Flower Stud Earrings","Bathroom Bath Rug Mat 20 x 31 Inch - Grey","Women's Knit Ballet Flat","Men's Regular-Fit Quick-Dry Golf Polo Shirt","Trash Can with Foot Pedal - Brushed Stainless Steel","Duvet Cover Set with Zipper Closure","Women's Chunky Cable Beanie - Gray","Men's Classic-fit Pleated Chino Pants","Men's Athletic Sneaker","Men's Navigator Sunglasses Pilot","Non-Stick Cookware Set, Pots, Pans and Utensils - 15 Pieces","Vanity Mirror with Heavy Base - Chrome","Women's Fleece Jogger Sweatpant","Double Oval Twist French Wire Earrings - Gold","Round Airtight Food Storage Containers - 5 Piece","Coffeemaker with Glass Carafe and Reusable Filter - 25 Oz, Black","Blackout Curtains Set 42 x 84-Inch - Black, 2 Panels","100% Cotton Bath Towels - 2 Pack, Light Teal","Women Waterproof Knit Athletic Sneakers - Pink","Countertop Blender - 64oz, 1400 Watts","10-Piece Mixing Bowl Set with Lids - Floral","2-Ply Kitchen Paper Towels - 30 Pack","Men's Full-Zip Hooded Fleece Sweatshirt","Pro head phone and mic - best quality"] , 
   images : createImgArray(numberOfAllProducts) ,
   price:['10.90','20.95','7.99','18.99','20.67','34.99','24.00','35.99','28.99','33.90','13.74','15.60','24.99','45.99','16.99','30.75','23.75','22.00','17.99','12.50','26.40','15.99','83.00','23.99','12.50','22.90','38.90','16.90','67.99','16.49','24.00','24.00','28.99','22.50','30.99','21.10','33.90','107.50','38.99','57.99','24.50','150.00'],
+
   vote : JSON.parse(localStorage.getItem('votes')) || votes.initialize()}
