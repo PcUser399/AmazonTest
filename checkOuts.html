@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Check Outs</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <style>
+      body{
+        margin: 0px;
+        font-family: Roboto, Arial;
+        color: rgb(33, 33, 33);
+        margin-top: 60px;
+        position: relative;
+      }
+      #header{
+        min-width: 0;
+        background-color: aliceblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-bottom: 1px solid rgb(208, 215, 221) ;
+        padding-right: 27px;
+        padding-left: 30px;
+      }
+      #header-container{
+        max-width: 1100px;
+        height: 60px;
+        display: flex;
+        flex :1;
+        align-items: center;
+        justify-content: space-between;
+        
+      }
+      #left-section{
+        height: 60px;
+        display: flex;
+        align-items: center;
+      }
+      #middal-section{
+        flex : 1;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #right-section{
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: right;
+      }
+      #small-logo{
+        width: 35px;
+        cursor: pointer;
+        display: none;
+        border: 1px solid transparent;
+        padding: 5px;
+        border-radius: 15px;
+      }
+      #logo{    
+        width: 100px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        padding: 10px 10px;
+        border-radius: 17px;
+      }
+      #small-logo:hover,
+      #logo:hover{
+        border: 1px solid rgb(33, 33, 33);
+      }
+      #items-checkout{
+       color: rgb(0, 113, 133);
+       cursor: pointer;
+      }
+      #order-pricing{
+        margin-top: 2px;
+        border: 1px solid rgb(222, 222, 222);
+        border-radius: 4px;
+        padding: 18px;
+        height: 270px;
+      }
+      /* #emty-cart-msg, */
+      #orders-review-msg{
+        font-weight:bolder;
+        font-size: 21px;
+        height: 30px;
+        margin-top: 140px;
+        padding: 0px 30px;
+      }
+      #orders-container{
+        display: grid;
+        grid-auto-rows: 275px;
+        row-gap: 10px;
+        max-width: 738px;
+      }
+      .order{
+        margin-top: 2px;
+        height: auto;
+        width: auto;
+        border: 1px solid rgb(222, 222, 222);
+        border-radius: 4px;
+        padding: 20px;
+      }
+
+      @media (min-width : 1801px) {
+        .checkout-msg{
+          font-size: 37px;
+        }
+      }
+      @media (max-width : 1800px) {
+        .checkout-msg{
+          font-size: 30px;
+        }
+      }
+      @media (max-width : 1400px) {
+        .checkout-msg{
+          font-size: 26px;
+        }
+        #right-section{
+          width: 150px;
+        }
+      }
+      @media (max-width : 1000px) {
+        .checkout-msg{
+          font-size: 20px;
+        }
+        #right-section{
+          width: auto;
+        }
+        #middal-section{
+          margin-right: 60px;
+        }
+
+      }
+      @media (max-width : 575px) {
+        #logo{ 
+          display: none;
+         }
+         #small-logo{
+          display: block;
+         }
+      }
+      .order-title-delivery-date{
+        margin-top: 8px;
+        color: rgb(0, 118, 0);
+        font-weight: 700;
+        font-size: 19px;
+      }
+      .order-image{
+        height: auto;
+        width: auto;
+        max-width: 100%;
+        max-height: 100%;
+      }
+      .order-image-container{
+        height: 100%;
+        width: 110px;
+      }
+      .order-display{
+        display: flex;
+        justify-content: space-between;
+        align-items: fisrt baseline;
+        margin-top: 15px;
+        gap: 10px;
+      }
+      .order-text-price-quantity{
+        flex: 1;
+      }
+      .order-text{
+        font-weight: 700;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .order-price{
+        color: rgb(177, 39, 4);
+        font-weight: 700;
+        margin-top: 8px;
+        margin-bottom: 5px;
+      }
+      .update-delete{
+        color: #017cb6;
+        cursor: pointer;
+      }
+      .delivery-time-text{
+        color: rgb(0, 118, 0);
+        font-weight: 700;
+        padding-left:10px ;
+        width: auto;      
+        white-space: nowrap;
+      }
+      input[type="radio"]{
+        width: 19px;
+        height: 37px;
+        margin: 0px;
+        cursor: pointer;
+      }
+      .shipping-price{
+        color: rgb(120, 120, 120);
+        font-size: 15px;
+        padding-left: 10px;
+        padding-top: 7px;
+        margin-bottom: 22.5px;
+      }
+      .order-delivery-option-conatainer{
+        display: flex;
+        flex-direction: rows;
+        cursor: pointer;
+      }
+      .right-section{
+        display: flex;
+        justify-content: left;
+        gap: 30px;
+      }
+      #emty-cart-msg{
+        margin-top: 10px;
+        margin-bottom: 7px;
+        font-size: 17.5px;
+        font-weight: 100;
+      }
+      #back-to-return-page,
+      #back-to-home-page{
+        color: rgb(33, 33, 33);
+        background-color: rgb(255, 216, 20);
+        border: 1px solid rgb(252, 210, 0);
+        font-size: 17px;
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 8px 15px;
+        max-width: 170px;
+        /* height: 38px; */
+      }
+      #back-to-return-page:hover,
+      #back-to-home-page:hover{
+        background-color: rgb(235, 196, 00);
+        border: 1px solid rgb(232, 196, 00);
+      }
+      #back-to-return-page:active,
+      #back-to-home-page:active{
+        background-color: rgb(205, 146, 00);
+      }
+      @media(min-width:1176px){
+        #orders-review-msg,
+        #display{
+        display: grid;
+        grid-template-columns: 738px 350px;
+        padding: 0px 30px;
+        gap: 12px;
+        justify-content: center;
+      }
+      #display{
+        padding:15px
+      }
+      }
+      @media(max-width:1175px){
+      #display{
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        padding: 0px 30px;
+        gap: 12px;
+      }
+
+    }
+      @media(max-width:1000px){
+        #orders-review-msg,
+        #display{
+          display: grid;
+          grid-template-columns: 12.55cm;
+          justify-content: center;
+          padding: 0px 30px;
+          gap: 12px;
+        }
+        #order-pricing{
+          order: 1;
+        }
+        #orders-container{
+          order: 2;
+        }
+        #orders-container{
+          display: grid;
+          grid-auto-rows: 420px;
+          row-gap: 10px;
+        }
+        .order-display{
+        display: flex;
+        flex-direction: column;
+        align-items: fisrt baseline;
+        margin-top: 15px;
+        gap: 30px;
+      }
+      .order-delivery-option-conatainer{
+        justify-content: center;
+      }
+      .order-image-container{
+        height: 120px;
+        width: 110px;
+      }
+      
+      }
+      .order-pricing-title{
+        font-weight: bolder;
+        font-size: 23.5px;
+        margin-bottom: 15px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+      }
+      .pricing-text{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+      #ordered-item-1-shipping{
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgb(222, 222, 222);
+      }
+      #tax{
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgb(222, 222, 222);
+      }
+      .orderTotal{
+        color: rgb(177, 39, 4);
+        font-weight: 700;
+        font-size: 22px;
+      }
+      #place-order{
+        color: rgb(33, 33, 33);
+        background-color: rgb(255, 216, 20);
+         border: 1px solid rgb(252, 210, 0);
+      }
+      .order-button-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 65px;
+      }
+      #place-order{
+        width: 100%;
+        height: 70%;
+        border-radius: 25px;
+        cursor: pointer;
+      }
+      #place-order:hover{
+        background-color: rgb(225, 186, 00);
+        border: 1px solid rgb(222, 190, 0);
+      }
+      #place-order:active{
+        background-color: rgb(185, 146, 00);
+      }
+      .hide{
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header id="header">
+      <div id="header-container">
+      <section id="left-section"><img src="images/black-logo.png" id="logo" onclick="clicks.homePage()"><img src="images/small-black-logo.png" id="small-logo"  onclick="clicks.homePage()"></section>
+      <section id="middal-section"><div id="header-message" class="checkout-msg">Checkout(<span id="items-checkout" class="checkout-msg"></span>)</div></section>
+      <section id="right-section"><img src="images/checkout-lock-icon.png"></section>
+      </div>
+    </header>
+    <div id="orders-review-msg" class="hide">Review your order</div>
+    <div id="display">
+      <div id="orders-container">
+        <dev id="no-buyed-items-container"  class="hide">
+          <p id="emty-cart-msg">Your cart is emty.</p>
+          <div id="button-container"  class="hide">
+            <button id="back-to-home-page" onclick="clicks.homePage()">View Products</button>
+            <button id="back-to-return-page" onclick="clicks.returnsPage()">View Purchases</button>
+          </div>
+        </dev>
+       
+
+              
+
+
+
+
+
+
+
+        
+
+
+        
+      </div>
+      <div id="order-pricing">
+        <div class="order-pricing-title">Order Summary</div>
+
+        <div class="pricing-text">
+          <div>Items(<span id="pricing-text-item-number">0</span>):</div>
+          <div class="ordered-item-pricing" id="ordered-items-pricing">$0.00</div>
+       </div>
+
+       <div class="pricing-text">
+          <div>Shipping & handling:</div>
+          <div class="ordered-item-pricing" id="ordered-items-shipping">$0.00</div>
+       </div>
+
+       <div class="pricing-text">
+          <div>Total before tax:</div>
+          <div class="ordered-item-pricing" id="ordered-items-total-before-tax">$0.00</div>
+       </div>
+
+       <div class="pricing-text" id="tax">
+          <div>Estimated tax (10%):</div>
+          <div class="ordered-item-pricing" id="ordered-items-total-tax">$0.00</div>
+       </div>
+
+
+       <div class="pricing-text">
+          <div class="orderTotal">Order total:</div>
+          <div class="orderTotal" id="ordered-items-total-price" >$0.00</div>
+       </div>
+
+       
+        <div class="order-button-container"><button id="place-order" onclick="clicks.buyOrders()">Place Your Order</button></div>
+
+      </div>
+
+      
+
+
+
+    </div>
+    <script src="functions.js"></script>
+    <script src="checkOuts.js"></script>
+  </body>
+</html>

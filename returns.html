@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Purchases</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body{
+        margin:0px;
+        font-family: Roboto, Arial ;
+        font-size: 16.5px;
+        color: rgb(33, 33, 33);
+        padding-top: 60px;
+      }
+      #head{
+        height: 60px;
+        background-color: rgb(19, 25, 33);
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        min-width: 0; 
+        gap:7px;
+        position: fixed;  
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+      #logo{    
+        width: 100px;
+        margin-top: 4px;
+        margin-left: 9px;
+        padding:10px ;
+        border: 1px  solid transparent;
+        cursor: pointer;
+        flex: 1;
+        border-radius: 19px;
+      }
+      #small-logo:hover,
+      #logo:hover{
+        border : 1px solid white;
+      }
+      #middle-section{
+        display: flex;
+        min-width: 0;
+        flex:1;
+        text-align: center;
+        justify-content: center; 
+      }
+      #right-section{
+        display: flex;
+        gap:0px;
+        margin-right: 10px;
+      }
+      #search-input{
+        max-width: 785px;
+        padding: 10px 10px;
+        min-width: 100px;
+        flex:1;
+        font-size: 15px;
+        font-weight: bold;
+        outline: none;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border: none;
+      }
+      #search-input::placeholder{
+        font: 15px Arial;
+        margin-left:15px;
+      }
+      .container,
+      #option1{
+        background-color: transparent;
+        border: 1px solid transparent;
+        color: white;
+        height: 50px;
+        width: 80px;
+        margin-top: 2px;
+        padding-top: 6px;
+        cursor: pointer;
+        text-align: left;
+        border-radius: 10px;
+      }
+      .container{
+        height: 38px;
+        width: 82px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        display: flex;
+        margin-right: 7.5px;
+        position: relative;
+      }
+      .container:hover,
+      #option1:hover{
+        border: 1px solid white;
+      }
+      #tt{
+        margin-top: 2px;
+      }
+      #small-logo{
+        width: 33px;
+        margin-top: 4px;
+        margin-left: 9px;
+        padding:7px ;
+        border: 1px  solid transparent;
+        cursor: pointer;
+        border-radius: 17px;
+      }
+      #search-icon{
+        height: 30px;
+        margin-right: 7px;
+        cursor: pointer;
+      }
+      #search{
+        width: 45px;
+        height: 40px;
+        background-color: rgb(254, 189, 105);
+        border: none;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+
+      }
+      #tt{
+        font-size: 15px;
+        font-weight: bolder;
+      }
+      #cart-icon{
+        width: 50px;
+      }
+      #cart-text{
+        height: 20px;
+        color: white;
+        padding-top: 15px;
+        font-size: 15px;
+        font-weight: 700;
+        font-family: Arial;
+      }
+      #display-number-of-buyed-itmes{
+        position:absolute;
+        height: 18px;
+        width: 21.9px;
+        top: 5px;
+        left: 18px;
+        color: rgb(240, 136, 4);
+        display:flex;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .buyed-orders-big-container{
+        display  : grid ;
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      #buyed-orders-container{
+        width: 850px;
+        min-width: 0px;
+        display: grid;
+        grid-template-rows: 82.5px;
+        grid-auto-rows: auto ;
+        padding:0px 20px ;
+      }
+      .order-title{
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: 26px;
+      }
+      .buyed-orders-details{
+        background-color: rgb(240, 242, 242);
+        border-bottom: 1px solid rgb(213, 217, 217);
+        border-top-right-radius: 25px;
+        border-top-left-radius: 25px;
+        display: flex;
+        justify-content: space-between;
+        padding: 25px;
+        align-items: center;
+      }
+      .first-section-buyed-ordered-details{
+        font-weight: 700;
+      }
+      .display-aside{
+        display: flex;
+        gap: 35px;
+      }
+      .orders-element{
+        display: grid;
+        height: auto;
+        grid-template-rows: 82.5px;
+        grid-auto-rows: 200px ;
+        border: 1px solid rgb(213, 217, 217);
+        border-radius: 25px;
+        margin-bottom: 50px;
+      }
+      .buyed-order{
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 25px
+      }
+      .image-text-container{
+        display: flex;
+        column-gap: 10px;
+      }
+      .buyed-order-image-container{
+        width: 150px;
+        height:155px ;
+        min-width: 150px;
+        display: block;
+        align-content: center;
+        text-align: center;
+      }
+      .buyed-order-image{
+        height: auto;
+        width: auto;
+        max-width: 100%;
+        max-height: 100%;
+        background-color: transparent;
+      }
+      .buyed-order-text{
+        height: 100%;
+        align-items: first baseline;
+      
+      }
+      .limit-text-2-lines{
+        font-size: 16px;
+        font-weight: 700;
+        max-height: 40px;
+        display: -webkit-box; 
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical; 
+        overflow: hidden;
+        margin-bottom: 7px;
+      }
+      .normal-text{
+        margin-bottom: 5px;
+      }
+      .buy-again{
+        margin-top: 20px;
+        color: rgb(33, 33, 33);
+        background-color: rgb(255, 216, 20);
+        border: 1px solid rgb(252, 210, 0);
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+        cursor: pointer;
+        font-size: 17px;
+        width: 160px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        justify-content: center;
+      }
+      .buy-again:hover{
+        background-color: rgb(225, 176, 00);
+        border: 1px solid rgb(222, 180, 0);
+      }
+      .buy-again:active{
+        background-color: rgb(185,145,0);
+      }
+      .Track-Package{
+        align-self: first baseline;
+        border: 1px solid #D5D9D9;
+        color: rgb(33, 33, 33);
+        background-color: white;
+        box-shadow: 0px 3.5px 5px rgba(213, 217, 217, 0.45);
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 15px;
+        width: 220px;
+        height: 40px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+      }
+      .Track-Package:hover{
+        background-color:rgb(247, 247, 247);
+      }
+      .small-size{
+        display: none;
+      }
+      #back-to-home-page{
+        color: rgb(33, 33, 33);
+        background-color: rgb(255, 216, 20);
+        border: 1px solid rgb(252, 210, 0);
+        font-size: 17px;
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 8px 15px;
+        max-width: 150px;
+      }
+      #back-to-home-page:hover{
+        background-color: rgb(235, 196, 00);
+        border: 1px solid rgb(232, 196, 00);
+      }
+      #back-to-home-page:active{
+        background-color: rgb(205, 146, 00);
+      }
+      .no-orders{
+        margin-left: 4px;
+        margin-bottom: 10px;
+      }
+      .options-small{
+        width: 100%;
+        position:fixed;
+        height: 87px;
+        background-color:  rgb(19, 25, 33);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        color: white;
+        font-weight: 500;
+        overflow: hidden; /* hides the part that’s still “above” */
+      }
+      @keyframes revealDown {
+       from { clip-path: inset(0 0 100% 0); opacity: 1; }
+       to   { clip-path: inset(0 0 0 0);   opacity: 1; } 
+      }   
+      @keyframes hideUp {
+       from { clip-path: inset(0 0 0 0); opacity: 1; }
+       to   { clip-path: inset(0 0 100% 0);   opacity: 0; } 
+      } 
+      #buyedItems{
+        color: rgb(240, 136, 4);
+      }
+      .small-option1,
+      .small-option2{
+        cursor: pointer;
+      }
+      .show-option{
+        animation: revealDown 0.6s ease forwards;
+      }
+      .hide-option{
+        animation: hideUp 0.6s ease forwards;
+      }
+      .buy-again-img{
+        width: 25px;
+        height: 25px;
+      }
+      #buy{
+        flex: 0.8;
+      }
+      #settings{
+        margin:6px;
+        cursor: pointer;
+      }
+      @media(max-width : 905px){
+        #buyed-orders-container{
+          width: 94%;
+        }
+      }
+      @media(max-width : 775px){
+        .buy-again{
+          margin-top: -1px;
+          width: 150px;
+          height: 35px;
+          font-size: 15px;
+          gap: 10px;
+        }
+        .Track-Package{display: none;}
+        .limit-text-2-lines{
+          -webkit-line-clamp: 1;
+          max-height: 18px;
+        }
+        .small-size{
+          display: block;
+          border-top-left-radius: 0px;
+          border-bottom-left-radius: 0px;
+          width:175px ;
+          margin-top: 5px;
+        }
+      }
+    .hide{
+      display: none;
+    }
+    </style>
+  </head>
+
+  <body>
+    <header id="head" >
+      <section id="first-section"></section>
+      <section id="middle-section"><input id="search-input" placeholder="Search"><button id="search"><img src="images/search.png" id="search-icon"></button></section>
+      <section id="right-section"><button id="option1">Returns<p id="tt">& Orders</p></button>
+      <div class="container">
+      </div>
+      </section>
+    </header>
+    <div class="options-small hide">
+      <div class="small-option1" onclick="clicks.returnsPage()">Returns & Orders</div>
+      <div class="small-option2" onclick="clicks.checkOutsPage()">Cart(<span id="buyedItems"></span>)</div>
+    </div>
+    <div class="buyed-orders-big-container">
+      <div id="buyed-orders-container">
+      <div class="order-title">Your Purchases</div>  
+      <div class="no-orders">No Purchases Yet</div>
+      <button id="back-to-home-page" onclick="clicks.homePage()">Buy Products</button>
+
+
+        
+
+
+
+
+
+        
+        
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </div>
+    </div>
+
+    <script src="functions.js"></script>
+    <script>
+      display.updateHeadIcons();
+      display.updateBuyedItmes(itemsBuyed);
+      display.returnPage();
+    </script>
+
+  </body>
+</html>
