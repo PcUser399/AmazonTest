@@ -263,7 +263,7 @@
 
     <header id="head" >
       <section id="first-section"></section>
-      <section id="middle-section"><input id="search-input" placeholder="Search"><button id="search"><img src="images/search.png" id="search-icon"></button></section>
+      <section id="middle-section"><input id="search-input" placeholder="Search"><button id="search"><img src="search.png" id="search-icon"></button></section>
       <section id="right-section"><button id="option1" onclick="clicks.returnsPage()">Returns<p id="tt">& Orders</p></button>
       <div class="container">
       </div>
@@ -299,11 +299,12 @@
         document.getElementById('date').innerText = data[2] ;
         document.getElementById('text').innerText = data[1] ;
         document.getElementById('quantity').innerText = data[3] ;
-        document.getElementById('order-img-container').innerHTML = `<img src="images/products/product${data[0]}.jpg" class="item-image">`;
+        document.getElementById('order-img-container').innerHTML = `<img src="product${data[0]}.jpg" class="item-image">`;
       }
       else{
         document.getElementById('all-container').classList.add('hide')
       }
     </script>
   </body>
+
 </html>
