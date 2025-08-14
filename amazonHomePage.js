@@ -1,4 +1,4 @@
-// localStorage.clear()
+localStorage.clear()
 clicks.createNewItem(numberOfAllProducts+numberOfProductInTheMoment)
 votes.initialize()
 display.updateHeadIcons();
@@ -8,3 +8,4 @@ display.allBody(200)
 
 
   
+
