@@ -214,6 +214,8 @@
         padding: 15px 0px;
         height: 200px;
         width: 200px;
+        display: block;
+        align-content: center;
       }
       .item-image{
         max-width: 90%;
@@ -244,18 +246,17 @@
         border-radius: 50px;
         overflow: hidden;
       }
-      @keyframes slides {
-        from{width: 0px;}
-        to{width: 14;}
-      }
-      .stage-process{
+
+      #stage-process{
         height: 100%;
         background-color: green;;
         border-radius: 50px;
         width: 14%;
-        animation: slides 1.5s ease forwards;
+        animation: slides 2.5s ease forwards;
         overflow: hidden;
       }
+    </style>
+    <style id="width-change">
     </style>
   </head>
 
@@ -283,11 +284,11 @@
         <div id="order-img-container"></div>
         <div class="order-stage">
           <div class="stage achived">Preparing</div>
-          <div class="stage">Shipped</div>
-          <div class="stage">Delivered</div>
+          <div class="stage" id="shipping">Shipped</div>
+          <div class="stage" id="delivered">Delivered</div>
         </div>
         <div class="stage-process-container">
-          <div class="stage-process"></div>
+          <div id="stage-process"></div>
         </div>
       </div>
     <script src="functions.js"></script>
@@ -295,6 +296,10 @@
       display.updateHeadIcons();
       display.updateBuyedItmes(itemsBuyed);
       let data = JSON.parse(localStorage.getItem('trackingData')) ;
+      data[4] = new Date(data[4]);
+      data[5] = new Date(data[5])
+      let today = new Date()
+      let percentage = (today-data[5])/(data[4]-data[5])*100 ;
       if (data){
         document.getElementById('date').innerText = data[2] ;
         document.getElementById('text').innerText = data[1] ;
@@ -304,7 +309,19 @@
       else{
         document.getElementById('all-container').classList.add('hide')
       }
+      percentage =  percentage < 14 ? 14 : percentage;
+      if(percentage >= 50){
+        document.getElementById('shipping').classList.add('achived');
+      }
+      if(percentage >= 99.999){
+        document.getElementById('delivered').classList.add('achived');
+      }
+      document.getElementById('width-change').innerHTML=`
+      @keyframes slides {
+        from{width: 0px;}
+        to{width: ${percentage}%;}
+      }
+      `
     </script>
   </body>
-
 </html>
